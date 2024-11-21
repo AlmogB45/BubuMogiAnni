@@ -1,0 +1,51 @@
+.tubby-main-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-image: url('../assets/Tubby.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.tubby-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.tubby-panel {
+    background-color: rgba(10, 25, 49, 0.8);
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#MainTitle {
+    font-size: 24px;
+    margin: 0;
+}
+
+.tubby-button-container {
+    margin-bottom: 20px;
+}
+
+
+.reg-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: background-color 0.3s;
+}
+
+.reg-button:hover {
+    background-color: #45a049;
+}

@@ -1,0 +1,173 @@
+/* FairyTaleStoryScroll.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap');
+
+.fairytale-container {
+    min-height: 100vh;
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: 'Amiri', serif;
+    background-size: cover;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.Background-container {
+    min-height: 100vh;
+    padding: 2rem;
+    margin: 0 auto;
+    font-family: 'Amiri', serif;
+    background: url('../assets/StoryBG.png') no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+    overflow-x: hidden;
+
+}
+
+.rtl {
+    direction: rtl;
+    text-align: right;
+}
+
+
+.book-cover {
+    background-color: rgba(139, 69, 19, 0.9);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.book-cover h1 {
+    font-size: 2.5rem;
+    color: #f1c40f;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.story-item {
+    margin-bottom: 4rem;
+    position: relative;
+}
+
+.story-text {
+    font-size: 1.5rem;
+    line-height: 1.8;
+    color: #2c3e50;
+    padding: 2rem;
+    background-color: rgba(255, 253, 240, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    border: 2px solid #d4af37;
+}
+
+.story-text::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    left: -10px;
+    bottom: -10px;
+    background: inherit;
+    filter: blur(10px);
+    z-index: -1;
+}
+
+.image-frame {
+    background-color: #d4af37;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.story-image {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+}
+
+.image-frame:hover .story-image {
+    transform: scale(1.05);
+}
+
+.story-button {
+    display: block;
+    margin: 2rem auto;
+    padding: 1rem 2rem;
+    font-size: 1.3rem;
+    color: #fff;
+    background-color: #8e44ad;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.story-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(-120deg,
+            transparent,
+            rgba(255, 255, 255, 0.4),
+            transparent);
+    transition: all 0.5s;
+}
+
+.story-button:hover::before {
+    right: 100%;
+}
+
+.story-button:hover {
+    background-color: #6c3483;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes floating {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(1deg);
+    }
+
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+}
+
+.story-item:nth-child(odd) .story-text {
+    animation: floating 6s ease-in-out infinite;
+}
+
+.story-item:nth-child(even) .story-text {
+    animation: floating 7s ease-in-out reverse infinite;
+}
+
+@media (max-width: 600px) {
+    .book-cover h1 {
+        font-size: 2rem;
+    }
+
+    .story-text {
+        font-size: 1.2rem;
+        padding: 1.5rem;
+    }
+
+    .story-button {
+        padding: 0.75rem 1.5rem;
+        font-size: 1.1rem;
+    }
+}
