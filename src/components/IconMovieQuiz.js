@@ -41,6 +41,9 @@ const CheckIcon = () => (
   );
 
 const IconMovieQuiz = () => {
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [selectedQuestion, setSelectedQuestion] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
   const navigate = useNavigate();
   const [questions] = useState([
     {
@@ -172,6 +175,23 @@ const IconMovieQuiz = () => {
   const [isCompleted, setIsCompleted] = useState(false);
 
   useEffect(() => {
+    // Check if device is mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Mobile-specific handlers
+  const handleAnswerSelect = (answer) => {
+    setSelectedAnswer(answer);
+  };
+
+
+  useEffect(() => {
     if (showResults) {
       const score = getScore();
       if (score === 15) { // Check for all 15 correct answers
@@ -183,6 +203,19 @@ const IconMovieQuiz = () => {
       }
     }
   }, [droppedAnswers, showResults, navigate]);
+
+  const handleQuestionSelect = (questionId) => {
+    if (selectedAnswer) {
+      setDroppedAnswers(prev => ({
+        ...prev,
+        [questionId]: selectedAnswer
+      }));
+      setSelectedAnswer(null);
+      setSelectedQuestion(null);
+    } else {
+      setSelectedQuestion(questionId);
+    }
+  };
 
   const handleDragStart = (e, answer) => {
     e.dataTransfer.setData('text', answer);
@@ -251,17 +284,23 @@ const IconMovieQuiz = () => {
       <div className="quiz-container">
         <h1 className="quiz-title">חידון האימוג'י סרטים האימתני</h1>
 
-        {/* Answer Bank */}
+        {/* Answer Bank - Modified for mobile */}
         <div className="answers-section">
           <h2 className="answers-title">תשובות אפשריות</h2>
-          <div className="answers-grid">
+          <div className={`answers-grid ${isMobile ? 'mobile' : ''}`}>
             {answers.map((answer, index) => (
               <div
                 key={index}
-                draggable
-                onDragStart={(e) => handleDragStart(e, answer)}
-                onDragEnd={handleDragEnd}
-                className={`answer-item ${draggedItem === answer ? 'dragging' : ''}`}
+                className={`answer-item ${selectedAnswer === answer ? 'selected' : ''} 
+                           ${isMobile ? 'mobile' : ''}`}
+                {...(isMobile
+                  ? { onClick: () => handleAnswerSelect(answer) }
+                  : {
+                      draggable: true,
+                      onDragStart: (e) => handleDragStart(e, answer),
+                      onDragEnd: handleDragEnd
+                    }
+                )}
               >
                 {answer}
               </div>
@@ -269,14 +308,20 @@ const IconMovieQuiz = () => {
           </div>
         </div>
 
-        {/* Questions Grid */}
-        <div className="questions-grid">
+        {/* Questions Grid - Modified for mobile */}
+        <div className={`questions-grid ${isMobile ? 'mobile' : ''}`}>
           {questions.map((question) => (
             <div
               key={question.id}
-              className="question-card"
-              onDragOver={handleDragOver}
-              onDrop={(e) => handleDrop(e, question.id)}
+              className={`question-card ${isMobile ? 'mobile' : ''} 
+                         ${selectedQuestion === question.id ? 'selected' : ''}`}
+              {...(isMobile
+                ? { onClick: () => handleQuestionSelect(question.id) }
+                : {
+                    onDragOver: handleDragOver,
+                    onDrop: (e) => handleDrop(e, question.id)
+                  }
+              )}
             >
               <img
                 src={question.imageUrl}
@@ -294,26 +339,27 @@ const IconMovieQuiz = () => {
                     )}
                   </div>
                 ) : (
-                  <div className="drop-placeholder">זרקי אותי פה</div>
+                  <div className="drop-placeholder">
+                    {isMobile ? 'לחצי כאן' : 'זרקי אותי פה'}
+                  </div>
                 )}
               </div>
             </div>
           ))}
         </div>
 
-        {/* Controls */}
         <div className="controls">
           <button
             onClick={() => setShowResults(true)}
             className="quiz-button check-button"
           >
-            Check Answers
+            בדקי אותי
           </button>
           <button
             onClick={resetQuiz}
             className="quiz-button reset-button"
           >
-            Reset Quiz
+            אפסי אותי
           </button>
         </div>
 

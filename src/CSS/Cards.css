@@ -82,3 +82,19 @@
     font-size: 14px;
     color: #666;
   }
+
+  @media (max-width: 768px) {
+    #cards-title {
+        margin-left: 0; /* Remove the left margin on mobile */
+        text-align: center;
+        width: 100%; /* Ensure full width */
+        padding: 0 15px; /* Add some padding for better spacing */
+    }
+    
+    .header-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+}

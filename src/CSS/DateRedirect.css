@@ -1,101 +1,184 @@
+/* Base styles */
 .logoMain {
-    text-align: center;
-    margin-bottom: 20px;
-    margin-top: 5%;
-    position: relative;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 40px;
+  position: relative;
+}
+
+.logoMain img {
+  width: 150px;
+  height: auto;
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  margin-bottom: 30px;
+}
+
+.main-container {
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-image: url('../assets/Background1.png');
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+}
+
+.input-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.panel-wrapper {
+  position: relative;
+  width: fit-content;
+}
+
+.panel {
+  width: 90%;
+  max-width: 400px;
+  background-color: rgba(10, 25, 49, 0.8);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.input-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.skip-checkbox-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 15px;
+  width: 80%;
+}
+
+.skip-checkbox-container input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #4CAF50;
+}
+
+.skip-checkbox-container label {
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Optional: Style the checkbox itself */
+.skip-checkbox-container input[type="checkbox"] {
+  accent-color: #4CAF50;
+}
+
+#FirstMeeting {
+  width: 80%;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  padding: 12px;
+  border: none;
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 16px;
+  outline: none;
+}
+
+#DateSub {
+  width: 80%;
+  padding: 12px;
+  border: none;
+  border-radius: 25px;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#DateSub:hover {
+  background-color: #45a049;
+}
+
+/* Media Queries */
+/* For tablets */
+@media screen and (min-width: 768px) {
+  .panel {
+    width: 60%;
+    max-width: 500px;
+    padding: 30px;
   }
-  
+
+  .logoMain img {
+    width: 180px;
+  }
+
+  #FirstMeeting,
+  #DateSub {
+    font-size: 18px;
+    padding: 15px;
+  }
+}
+
+/* For desktop */
+@media screen and (min-width: 1024px) {
+  .panel {
+    width: 40%;
+    max-width: 600px;
+  }
+
   .logoMain img {
     width: 200px;
-    height: auto;
-    border-radius: 50%;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-    margin-bottom: 40px;
-  }
-  
-  .main-container {
-    display: flex;
-    min-height: 100vh;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background-image: url('../assets/Background1.png');
-    background-size: cover;
-    background-position: center;
-  }
-  
-  .input-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .panel {
-    max-width: 30%;
-    flex: 1;
-    background-color: rgba(10, 25, 49, 0.8);
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 10%;
-    padding: 20px;
-  }
-  
-  .input-container form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
   }
 
   .skip-button {
-    position: absolute;
-    bottom: 250px;
-    left: 450px;
-    width: 20px;
-    height: 20px;
-    border: none;
-    background: #4CAF50;  /* Green color, you can change this */
-    cursor: pointer;
-    border-radius: 50%;   /* Makes it circular */
-    transition: transform 0.3s ease;
-    padding: 0;
-    z-index: 1000;
-}
-
-.skip-button:hover {
-  transform: scale(1.1);
-  background: #45a049;  /* Slightly darker on hover */
-}
-
-  
-  #FirstMeeting {
-    width: 80%;
-    margin-top: 25px;
-    margin-bottom: 20px;
-    padding: 15px;
-    border: none;
-    border-radius: 25px;
-    background-color: rgba(255, 255, 255, 0.2);
-    color: #fff;
-    font-size: 16px;
-    outline: none;
+    width: 25px;
+    height: 25px;
   }
-  
+}
+
+/* For smaller phones */
+@media screen and (max-width: 380px) {
+  .panel {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .logoMain img {
+    width: 120px;
+  }
+
+  #FirstMeeting,
   #DateSub {
-    width: 80%;
-    padding: 15px;
-    border: none;
-    border-radius: 25px;
-    background-color: #4CAF50;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    width: 90%;
+    font-size: 14px;
+    padding: 10px;
   }
-  
-  #DateSub:hover {
-    background-color: #45a049;
-  }
+
+  .skip-checkbox-container {
+    margin-bottom: 10px;
+}
+
+.skip-checkbox-container input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+}
+
+.skip-checkbox-container label {
+    font-size: 12px;
+}
+}
