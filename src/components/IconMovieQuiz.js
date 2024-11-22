@@ -196,7 +196,7 @@ const IconMovieQuiz = () => {
       const score = getScore();
       if (score === 15) { // Check for all 15 correct answers
         setIsCompleted(true);
-        toast.success('מושלם! ממשיכים בדרכנו אל הגרנד פינלה');
+        alert('מושלם! ממשיכים בדרכנו אל הגרנד פינלה');
         setTimeout(() => {
           navigate('/Greeting-Page'); // Replace with your route
         }, 2000);
