@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import ProtectedRoute from './Firebase/ProtectedRoute';
 import { ToastContainer } from 'react-toastify';
 import DateRedirectForm from './components/DateRedirect';
 import Questionnaire from './components/Questionnaire';
@@ -32,15 +33,15 @@ function App() {
     <Router>
       <Routes>
       <Route path="/" element={<Login />} />
-        <Route path="/DateRedirect" element={<DateRedirectForm />} />
-        <Route path="/Story" element={<StoryScroll />} />
-        <Route path="/BubuMogi-Page" element={<Questionnaire />} />
-        <Route path="/Icon-Page" element={<IconQuestionnaire />} />
-        <Route path="/tubby-surprise" element={<TubbySuprise />} />
-        <Route path="/MovieQuiz" element={<IconMovieQuiz />} />
-        <Route path="/Greeting-Page" element={<Cards />} />
-        <Route path="/create-card" element={<CreateCard />} />
-        <Route path="/item/:itemId" element={<CardPage />} />
+        <Route path="/DateRedirect" element={<ProtectedRoute><DateRedirectForm /> </ProtectedRoute>} />
+        <Route path="/Story" element={<ProtectedRoute><StoryScroll /> </ProtectedRoute>} />
+        <Route path="/BubuMogi-Page" element={<ProtectedRoute><Questionnaire /> </ProtectedRoute>} />
+        <Route path="/Icon-Page" element={<ProtectedRoute><IconQuestionnaire /> </ProtectedRoute>} />
+        <Route path="/tubby-surprise" element={<ProtectedRoute><TubbySuprise /> </ProtectedRoute>} />
+        <Route path="/MovieQuiz" element={<ProtectedRoute><IconMovieQuiz /> </ProtectedRoute>} />
+        <Route path="/Greeting-Page" element={<ProtectedRoute><Cards /> </ProtectedRoute>} />
+        <Route path="/create-card" element={<ProtectedRoute><CreateCard /> </ProtectedRoute>} />
+        <Route path="/item/:itemId" element={<ProtectedRoute><CardPage /> </ProtectedRoute>} />
        </Routes>
     </Router>
     </div>
